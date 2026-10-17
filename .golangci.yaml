@@ -1,14 +1,6 @@
-run:
-  timeout: 5m
-  concurrency: 0
+version: "2"
 linters:
   enable:
-    - errcheck
-    - gosimple
-    - govet
-    - ineffassign
-    - staticcheck
-    - unused
     - asasalint
     - asciicheck
     - bidichk
@@ -41,10 +33,9 @@ linters:
     - gocritic
     - gocyclo
     - godox
-    - gofmt
     - goheader
     - gomoddirectives
-    - gomodguard
+    - gomodguard_v2
     - goprintffuncname
     - gosec
     - gosmopolitan
@@ -72,8 +63,7 @@ linters:
     - sloglint
     - spancheck
     - sqlclosecheck
-    - stylecheck
-    - tenv
+    - staticcheck
     - testableexamples
     - testifylint
     - thelper
@@ -85,4 +75,24 @@ linters:
     - wastedassign
     - whitespace
     - zerologlint
+  exclusions:
+    generated: lax
+    presets:
+      - comments
+      - common-false-positives
+      - legacy
+      - std-error-handling
+    paths:
+      - third_party$
+      - builtin$
+      - examples$
+formatters:
+  enable:
+    - gofmt
     - goimports
+  exclusions:
+    generated: lax
+    paths:
+      - third_party$
+      - builtin$
+      - examples$
